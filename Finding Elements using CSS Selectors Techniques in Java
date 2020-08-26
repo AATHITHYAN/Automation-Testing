@@ -1,0 +1,43 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class CSS_SelectorsCheatSheet 
+{
+
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		driver = new FirefoxDriver();
+		
+		driver.get("https://letskodeit.teachable.com/p/practice");
+		
+		//driver.findElement(By.cssSelector("#displayed-text")).sendKeys("Hello"); // Using CSS id value.
+		
+		//driver.findElement(By.cssSelector(".inputs")); //To select multiple Class.
+		
+		//driver.findElement(By.cssSelector("input[id=displayed-text]")); //To select css by id value.
+		
+		//driver.findElement(By.cssSelector("input#displayed-text")).sendKeys("Hello"); //Using Tag name to get more accurate.
+		
+		//driver.findElement(By.cssSelector("input.displayed-class")); //To find accurately in Group.
+		
+		//driver.findElement(By.cssSelector(".class1.class2")); //To Get accurately using multiple class.
+		
+		//driver.findElement(By.cssSelector("input[class^='input']")); // ^ is used to select which are start with this text.
+		
+		//driver.findElement(By.cssSelector("input[class$='class']")); // $ is used to select ends with this text.
+		
+		//driver.findElement(By.cssSelector("input[class*='displayed-class']")); // * is used to select which contains this text any input tags.
+
+		//driver.findElement(By.cssSelector("fieldset")); // it select all Fieldset tag.
+		
+		//driver.findElement(By.cssSelector("fieldset>#product")); //Using '>' with CSS id symbol to move to child node. find accurate element.
+		
+		//driver.findElement(By.cssSelector("fieldset>button")); //Using '>' with Tag Name symbol to move to child node. find accurate element.
+		
+		driver.findElement(By.cssSelector("fieldset>input#name")); //Using '>' with Tag Name with CSS Id symbol to move to child node. find accurate element.
+	}
+}
