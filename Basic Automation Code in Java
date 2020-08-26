@@ -1,0 +1,60 @@
+package Basics;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BasicDemo 
+{
+
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\aathithyan.k\\Downloads\\chromedriver.exe");
+		
+		driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://login.yahoo.com/");
+		
+		WebElement userName = driver.findElement(By.id("login-username")); //By ID
+		
+		userName.sendKeys("sampleautomation@yahoo.com");
+		
+		driver.findElement(By.cssSelector("#login-signin")).click(); //By CSS Selector
+		
+	//	driver.findElement(By.xpath("//input[@id='login-signin']")).click(); //By XPath
+		
+	//	driver.findElement(By.linkText("Forgot username?")); //By LinkText
+		
+	//	driver.findElement(By.partialLinkText("Forgot")); //By Partial LinkText
+		
+		//To Get Total Link in a single Webpage:
+		
+		List<WebElement> list = driver.findElements(By.tagName("a"));
+		
+		System.out.println(list.size()); //size of the list
+		
+		//For Each Loop:
+		for(WebElement i : list)
+		{
+			System.out.println(i.getText());
+		}
+		
+		/*
+		 * 
+		//For Loop:
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i).getText());
+		}
+		
+		*/
+	}
+
+}
