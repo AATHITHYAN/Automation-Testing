@@ -1,0 +1,28 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class IdXPathDemo 
+{
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		driver = new FirefoxDriver();
+		
+		String baseURL = "https://www.google.com/";
+		
+		driver.manage().window().maximize();
+		
+		driver.get(baseURL);
+		
+		driver.findElement(By.name("q")).sendKeys("letskodeit"); //By name.
+		
+		//driver.findElement(By.className("gNO89b")).click();  //By Class name.
+		
+		//driver.findElement(By.id(id));
+	}
+
+}
