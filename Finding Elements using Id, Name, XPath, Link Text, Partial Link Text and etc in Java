@@ -1,0 +1,45 @@
+package Basics;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class IdXPathNameLinkDemo 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		WebDriver driver;
+		driver = new FirefoxDriver();
+		
+		String url = "https://demostore.x-cart.com/";
+		
+		driver.get(url);
+		
+		//https://twitter.com/:
+		
+		//driver.findElement(By.id("searchInput")).sendKeys("India"); //By Id
+		
+		//driver.findElement(By.name("search")).sendKeys("India"); //By Name.
+		
+		//driver.findElement(By.xpath("//input[@id='searchInput']")).sendKeys("India");; //By XPath.
+		
+		//driver.findElement(By.tagName("button")).click();
+		
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS); //Implicite Wait.
+		
+		//https://letskodeit.teachable.com/:
+		
+		//driver.findElement(By.linkText("Login")).click(); //LinkText
+		
+		//Thread.sleep(3000);
+		
+		//driver.findElement(By.partialLinkText("Pract")).click(); //Partial LinkText
+		
+		driver.findElement(By.className("xcart-link")).click(); //Class Name.
+		
+		//driver.findElement(By.tagName("a")).click(); //Tag Name - Not preferable
+	}
+
+}
