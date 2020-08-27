@@ -1,0 +1,26 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Exercise2 
+{
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\aathithyan.k\\Downloads\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		
+		String baseURL = "https://dhtmlx.com/docs/products/dhtmlxGrid/";
+		
+		driver.get(baseURL);
+		
+		//Exercise : 2
+		
+		//Find Author of the book "The Green Mile":
+		
+		driver.findElement(By.xpath("//div[@id='gridbox']//a[text()='The Green Mile']//parent::td//following-sibling::td[1]"));
+	}
+
+}
