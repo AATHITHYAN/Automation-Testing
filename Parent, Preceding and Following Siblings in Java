@@ -1,0 +1,32 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class ParentPrecedingFollowingSiblings 
+{
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\aathithyan.k\\Downloads\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		
+		String baseURL = "https://letskodeit.teachable.com/";
+		
+		driver.get(baseURL);
+		
+		//Using //parent::<tag> to go back to parent Tag.
+		
+		driver.findElement(By.xpath("//a[@href='/sign_in']//parent::li"));
+		
+		//Using //preceding-sibling::<tag> to go to immediately previous sibling.
+		
+		driver.findElement(By.xpath("//a[@href='/sign_in']//parent::li//preceding-sibling::li"));
+		
+		//Using //following-sibling::<tag> to go to immediate next sibling.
+		
+		driver.findElement(By.xpath("//a[@href='/sign_in']//parent::li//preceding-sibling::li//following-sibling::li[2]"));
+	}
+
+}
