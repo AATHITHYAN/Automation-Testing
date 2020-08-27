@@ -1,0 +1,26 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class SingleAndDoubleSlash 
+{
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\aathithyan.k\\Downloads\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		
+		String baseURL = "https://letskodeit.teachable.com/";
+		
+		driver.get(baseURL);
+		
+		//  / - used to look for the element immediately inside the parent element.
+		driver.findElement(By.xpath("//div[@id='navbar']/div/div/div/ul/li[2]/a")).click();
+		
+		
+		// // - used to look for the any child or parent or nested child or parent element inside parent or child xpath.
+		driver.findElement(By.xpath("//div[@id='navbar']//ul/li[2]/a")).click();
+	}
+}
