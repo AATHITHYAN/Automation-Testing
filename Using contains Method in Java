@@ -1,0 +1,28 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class UsingContainsMethod
+{
+	public static void main(String[] args)
+	{
+		WebDriver driver;
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\aathithyan.k\\Downloads\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		
+		String baseURL = "https://letskodeit.teachable.com/";
+		
+		driver.get(baseURL);
+		
+		//Using contains method to find text with spaces.
+		
+		driver.findElement(By.xpath("//div[@id='navbar']//a[contains(text(),'Login')]"));
+		
+		//Using Multiple Contains Method:
+		
+		driver.findElement(By.xpath("//div[@id='navbar']//a[contains(@class,'navbar-link') and contains(@href,'sign_in')]"));
+	}
+
+}
