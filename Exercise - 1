@@ -1,0 +1,27 @@
+package Basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Exercise1 
+{
+	public static void main(String[] args) 
+	{
+		WebDriver driver;
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\aathithyan.k\\Downloads\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		
+		String baseURL = "https://letskodeit.teachable.com/pages/practice";
+		
+		driver.get(baseURL);
+		
+		//Execise : 1 
+		
+		//Find the price of the course "Python Programming Language":
+		
+		driver.findElement(By.xpath("//table[@id='product']//td[text()='Python Programming Language']//following-sibling::td"));	
+		
+	}
+
+}
