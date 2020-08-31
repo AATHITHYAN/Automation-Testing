@@ -1,0 +1,64 @@
+package JUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+class DropDownSelect {
+	WebDriver driver;
+	String baseUrl;
+	@BeforeEach
+	void setUp() throws Exception {
+		driver = new FirefoxDriver();
+		baseUrl = "https://letskodeit.teachable.com/p/practice";
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test
+	void testDropDown() throws InterruptedException {
+		driver.get(baseUrl);
+		WebElement element = driver.findElement(By.id("carselect"));
+		//Select sel = new Select(driver.findElement(By.id("carselect")));
+		Select sel = new org.openqa.selenium.support.ui.Select(element);
+		
+		Thread.sleep(3000);
+		System.out.println("Select Benz by value");
+		sel.selectByValue("benz");
+		
+		Thread.sleep(3000);
+		System.out.println("Select Honda by Index");
+		sel.selectByIndex(2);
+		
+		Thread.sleep(3000);
+		System.out.println("Select BMW by visible Text");
+		sel.selectByVisibleText("BMW");
+		
+		Thread.sleep(3000);
+		System.out.println("Print the list of all options");
+		
+		List<WebElement> options = sel.getOptions();
+		int size = options.size();
+		
+		for(int i = 0; i < size; i++)
+		{
+			String optionName = options.get(i).getText();
+			System.out.println(optionName);
+		}
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception {
+	}
+}
