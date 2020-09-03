@@ -1,0 +1,47 @@
+package JUnit;
+
+//import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+class ExplicitWaitUsingGenericMethod {
+	WebDriver driver;
+	String baseUrl;
+	GenericMethodForExplicitelyWait gmfew;
+	@BeforeEach
+	void setUp() throws Exception {
+		driver = new FirefoxDriver();
+		
+		baseUrl = "https://letskodeit.teachable.com/p/practice";
+		
+		gmfew = new GenericMethodForExplicitelyWait(driver);
+		
+		driver.manage().window().maximize();
+	}
+
+	@Test
+	void test() {
+		driver.get(baseUrl);
+		
+		WebElement loginLink = driver.findElement(By.linkText("Login"));
+		
+		loginLink.click();
+		
+		WebElement emailField = gmfew.waitForElement(By.xpath("//input[@id='user_email']"), 3);
+		
+		emailField.sendKeys("tests");
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception {
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+}
