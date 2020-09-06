@@ -1,0 +1,56 @@
+package JUnit;
+
+//import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+class ValidDateListSelection {
+	
+	private WebDriver driver;
+	private String baseUrl;
+	
+	@BeforeEach
+	void setUp() throws Exception {
+		driver = new FirefoxDriver();
+		baseUrl = "https://www.apsrtconline.in/oprs-web/";
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Test
+	void test() throws InterruptedException {
+		driver.get(baseUrl);
+		driver.findElement(By.name("txtJourneyDate")).click();
+		//div[@class='ui-datepicker-group ui-datepicker-group-first']//table//tbody//a
+		WebElement targetMonth = driver.findElement(By.xpath("//div[@class='ui-datepicker-group ui-datepicker-group-first']//table//tbody"));
+		
+		List<WebElement> targetDate = targetMonth.findElements(By.tagName("a"));
+				
+		Thread.sleep(5000);
+		
+		for(WebElement date: targetDate)
+		{
+			if(date.getText().equals("29"))
+			{
+				date.click();
+				break;
+			}
+		}
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception {
+		Thread.sleep(10000);
+		driver.quit();
+	}
+	
+}
