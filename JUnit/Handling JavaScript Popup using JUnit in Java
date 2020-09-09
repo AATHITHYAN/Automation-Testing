@@ -1,0 +1,61 @@
+package JUnit;
+
+//import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+class SwitchAlert 
+{
+	private WebDriver driver;
+	private String baseUrl;
+	
+	@BeforeEach
+	void setUp() throws Exception 
+	{
+		driver = new FirefoxDriver();
+		baseUrl = "https://letskodeit.teachable.com/p/practice";
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(baseUrl);
+	}
+	
+	@Test
+	void testSwitchAlert() throws InterruptedException 
+	{
+		Thread.sleep(3000);
+		driver.findElement(By.id("name")).sendKeys("Aathithyan");
+		driver.findElement(By.id("alertbtn")).click();
+		Thread.sleep(3000);
+		Alert alert = driver.switchTo().alert();
+		alert.accept(); //To Click OK
+	}
+	
+	@Test
+	void testSwitchConfirm() throws InterruptedException
+	{
+		Thread.sleep(3000);
+		driver.findElement(By.id("name")).sendKeys("Aathithyan");
+		driver.findElement(By.id("confirmbtn")).click();
+		Thread.sleep(3000);
+		Alert alert = driver.switchTo().alert();
+		alert.accept();  //To Click OK
+		//alert.dismiss(); //To Click Cancel
+	}
+
+	@AfterEach
+	void tearDown() throws Exception 
+	{
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+}
