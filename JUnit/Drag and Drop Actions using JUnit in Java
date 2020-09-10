@@ -1,0 +1,58 @@
+package JUnit;
+
+import java.util.concurrent.TimeUnit;
+
+//import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+class DragAndDropActions 
+{
+	private WebDriver driver;
+	private String baseUrl;
+	
+	@BeforeEach
+	void setUp() throws Exception
+	{
+		driver = new FirefoxDriver();
+		baseUrl = "https://jqueryui.com/droppable/";
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Test
+	void test() throws InterruptedException
+	{
+		driver.get(baseUrl);
+		Thread.sleep(3000);
+		
+		driver.switchTo().frame(0);
+		
+		WebElement fromElement = driver.findElement(By.id("draggable"));
+		WebElement toElement = driver.findElement(By.id("droppable"));
+		
+		Actions action = new Actions(driver);
+		
+		//Drag and drop:
+		//action.dragAndDrop(fromElement, toElement).build().perform();
+		
+		//Click and Hold, move to element, release, build and perform.
+		action.clickAndHold(fromElement).moveToElement(toElement).release().build().perform();
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception 
+	{
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+}
