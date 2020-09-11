@@ -1,0 +1,50 @@
+package JUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+class MultipleKeyPress 
+{
+	private WebDriver driver;
+	private String baseUrl;
+	
+	@BeforeEach
+	void setUp() throws Exception
+	{
+		driver = new FirefoxDriver();
+		baseUrl = "https://letskodeit.teachable.com/p/practice";
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Test
+	void testMultipleKeyPress() throws InterruptedException 
+	{
+		driver.get(baseUrl);
+		//driver.findElement(By.id("openwindow")).sendKeys(Keys.CONTROL + "a");
+		Thread.sleep(3000);
+		//driver.findElement(By.id("openwindow")).sendKeys(Keys.chord(Keys.CONTROL + "a"));
+		//Thread.sleep(3000);
+		String selectAll = Keys.chord(Keys.CONTROL, "a");
+		driver.findElement(By.id("openwindow")).sendKeys(selectAll);
+		Thread.sleep(5000);
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception 
+	{
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+}
